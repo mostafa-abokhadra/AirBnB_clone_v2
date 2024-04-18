@@ -36,8 +36,8 @@ class DBStorage:
         classes = []
         if cls is None:
             classes = [City, Place, State, User, Review, Amenity]
-        elif cls is str:
-            classes = [eval(cls)]
+        #elif cls is str:
+            #classes = [eval(cls)]
         else:
             classes = [cls]
         objects = {}
@@ -55,9 +55,10 @@ class DBStorage:
         """save all changes"""
         self.__session.commit()
 
-    def delete(self, obj):
+    def delete(self, obj=None):
         """ delete object"""
-        self.__session.delete(obj)
+        if obj:
+            self.__session.delete(obj)
 
     def reload(self):
         """create all tables in database"""
