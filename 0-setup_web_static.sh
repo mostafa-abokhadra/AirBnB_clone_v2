@@ -2,6 +2,7 @@
 # deploying webstatic
 
 sudo apt-get -y update
+sudo apt-get -y upgrade
 sudo apt-get -y install nginx
 sudo mkdir -p /data/web_static/releases/test /data/web_static/shared
 echo "almost there :)" | sudo tee /data/web_static/releases/test/index.html
