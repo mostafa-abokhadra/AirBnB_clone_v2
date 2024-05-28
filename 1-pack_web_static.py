@@ -1,20 +1,20 @@
 #!/usr/bin/python3
-# deploying
-
-from datetime import datetime
+"""making archeive
+"""
 from fabric.api import local
-from os.path import isdir
+from datetime import datetime
+import os
 
-@task
 def do_pack():
-	"""packing webstatic into archeive
+	"""making archeive
 	"""
-    try:
-        date = datetime.now().strftime("%Y%m%d%H%M%S")
-        if isdir("versions") is False:
-            local("mkdir versions")
-        file_name = "versions/web_static_{}.tgz".format(date)
-        local("tar -cvzf {} web_static".format(file_name))
-        return file_name
-    except:
-        return None
+	try:
+		local('mkdir -p versions')
+		archive_path = 'versions/web_static_{}.tgz'.format(
+		datetime.now().strftime('%Y%m%d%H%M%S'))
+		local('tar -cvzf {} web_static'.format(archive_path))
+		print('web_static packed: {} -> {}'.format(archive_path,
+		os.path.getsize(archive_path)))
+	except:
+		return None
+	
