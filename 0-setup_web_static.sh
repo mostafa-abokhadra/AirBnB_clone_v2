@@ -1,16 +1,15 @@
 #!/usr/bin/env bash
 # deploying webstatic
-sudo apt_get update
-sudo apt_get install nginx
-mkdir -p /data/web_static/releases/
-mkdir -p /data/web_static/releases/test/
-cd /data/web_static/releases/test/
-echo "almost there💚" >> index.html
+sudo apt-get update
+sudo apt install -y nginx
+sudo mkdir -p /data/web_static/releases/
+sudo mkdir -p /data/web_static/releases/test/
+echo "almost there💚" | sudo tee -a /data/web_static/releases/test/index.html
 if [ -L /data/web_static/current ]; then
-	sudo rm /data/web_static/current
+        sudo rm /data/web_static/current
 fi
-ln -s /data/web_static/releases/test/ /data/web_static/current
-sudo chown -R ubuntu:ubuntu
+sudo ln -s /data/web_static/releases/test/ /data/web_static/current
+sudo chown -R ubuntu:ubuntu /data/
 sudo sed -i '$ a \
 \
 server {\
@@ -23,3 +22,4 @@ server {\
 \
 }\
 ' /etc/nginx/sites-available/default
+sudo service nginx restart
