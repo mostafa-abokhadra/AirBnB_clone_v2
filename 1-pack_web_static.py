@@ -7,7 +7,8 @@ from os.path import isdir
 
 @task
 def do_pack():
-    """generates a tgz archive"""
+	"""packing webstatic into archeive
+	"""
     try:
         date = datetime.now().strftime("%Y%m%d%H%M%S")
         if isdir("versions") is False:
