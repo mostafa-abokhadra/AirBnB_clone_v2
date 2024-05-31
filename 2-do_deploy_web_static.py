@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 # deploying
+"""doplying finally"""
 
 import os.path
 from fabric.api import put, env, run
@@ -7,7 +8,10 @@ from fabric.api import put, env, run
 env.hosts = ["ubuntu@54.90.62.95", "ubuntu@54.90.37.231"]
 env.user = "ubuntu"
 
+
 def do_deploy(archive_path):
+    """deploying to server
+    """
     if os.path.exists(archive_path):
         file_name = archive_path.split('/')[-1]
         put(archive_path, "/tmp/")
