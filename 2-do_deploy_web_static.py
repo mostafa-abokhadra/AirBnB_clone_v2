@@ -21,9 +21,10 @@ def do_deploy(archive_path):
             file_name, file_name.split('.')[0]))
 
         run("rm /tmp/{}".format(file_name))
-        run("rm /data/web_static/current")
+        run("rm -f /data/web_static/current")
         run("ln -s /data/web_static/current /data/web_static/releases/{}".format(
             file_name.split('.')[0]))
+        print("New version deployed!")
         return True
     else:
         return False
